@@ -1,38 +1,75 @@
-const int PinsCount = 5;
+int pinsCount = 5;
+const int pins[] = {3, 5, 6, 9, 10};
 
-unsigned long* pinMicros = new unsigned long[PinsCount];
-unsigned long* pinIntervals = new unsigned long[PinsCount];
-int* pinStates = new int[PinsCount];
+int ledStates[] = {HIGH, HIGH, HIGH, HIGH, HIGH};
+
+unsigned long microsArr[] = {0, 0, 0, 0, 0};
 
 void setup() {
-  pinIntervals[0] = 10000; // 10 миллисекунд
-  pinIntervals[1] = 1000; // 1 миллисекунд
-  pinIntervals[2] = 500; // 500 микросекунд
-  pinIntervals[3] = 100; // 100 микросекунд
-  pinIntervals[4] = 50; // 50 микросекунд
-
-  for (int i = 0; i < PinsCount; i++) {
-    pinMicros[i] = 0;
-    pinStates[i] = LOW;
-    pinMode(i + 1, OUTPUT);
+  for (int thisPin = 0; thisPin < pinsCount; thisPin++) {
+    pinMode(pins[thisPin], OUTPUT);
   }
 }
 
 void loop() {
-  unsigned long micros_val = micros();
+  unsigned long currentMicros = micros();
 
-  for (int i = 0; i < PinsCount; i++) {
-    if (micros_val - pinMicros[i + 1] >= pinIntervals[i + 1]) {
-      pinMicros[i + 1] = micros_val;
-      
-      if (pinStates[i + 1] == LOW) {
-        pinStates[i + 1] = HIGH;
-      }
-      else {
-        pinStates[i + 1] = LOW;
-      }
-      
-      digitalWrite(i + 1, pinStates[i + 1]);
+  // -------------- 1 ---------------
+  if (currentMicros - microsArr[0] >= 10000) {
+    microsArr[0] = currentMicros;
+
+    if (ledStates[0] == LOW) {
+      ledStates[0] = HIGH;
+    } else {
+      ledStates[0] = LOW;
     }
+  }
+
+  // -------------- 2 ---------------
+  if (currentMicros - microsArr[1] >= 1000) {
+    microsArr[1] = currentMicros;
+
+    if (ledStates[1] == LOW) {
+      ledStates[1] = HIGH;
+    } else {
+      ledStates[1] = LOW;
+    }
+  }
+
+  // -------------- 3 ---------------
+  if (currentMicros - microsArr[2] >= 500) {
+    microsArr[2] = currentMicros;
+
+    if (ledStates[2] == LOW) {
+      ledStates[2] = HIGH;
+    } else {
+      ledStates[2] = LOW;
+    }
+  }
+
+  // -------------- 4 ---------------
+  if (currentMicros - microsArr[3] >= 100) {
+    microsArr[3] = currentMicros;
+
+    if (ledStates[3] == LOW) {
+      ledStates[3] = HIGH;
+    } else {
+      ledStates[3] = LOW;
+    }
+  }
+
+  // -------------- 5 ---------------
+  if (currentMicros - microsArr[4] >= 50) {
+    microsArr[4] = currentMicros;
+
+    if (ledStates[4] == LOW) {
+      ledStates[4] = HIGH;
+    } else {
+      ledStates[4] = LOW;
+    }
+  }
+
+  for (int thisPin = 0; thisPin < pinsCount; thisPin++) {
+    digitalWrite(pins[thisPin], ledStates[thisPin]);
   }
 }
