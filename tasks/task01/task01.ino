@@ -23,6 +23,8 @@ void loop() {
     } else {
       ledStates[0] = LOW;
     }
+
+    digitalWrite(pins[0], ledStates[0]);
   }
 
   // -------------- 2 ---------------
@@ -34,6 +36,8 @@ void loop() {
     } else {
       ledStates[1] = LOW;
     }
+
+    digitalWrite(pins[1], ledStates[1]);
   }
 
   // -------------- 3 ---------------
@@ -45,6 +49,8 @@ void loop() {
     } else {
       ledStates[2] = LOW;
     }
+
+    digitalWrite(pins[2], ledStates[2]);
   }
 
   // -------------- 4 ---------------
@@ -56,6 +62,8 @@ void loop() {
     } else {
       ledStates[3] = LOW;
     }
+
+    digitalWrite(pins[3], ledStates[3]);
   }
 
   // -------------- 5 ---------------
@@ -67,9 +75,7 @@ void loop() {
     } else {
       ledStates[4] = LOW;
     }
-  }
 
-  for (int thisPin = 0; thisPin < pinsCount; thisPin++) {
-    digitalWrite(pins[thisPin], ledStates[thisPin]);
+    digitalWrite(pins[4], ledStates[4]);
   }
 }
